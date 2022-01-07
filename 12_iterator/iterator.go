@@ -8,10 +8,19 @@ type Aggregate interface {
 
 type Iterator interface {
 	First()
-	IsDone() bool
 	Next() interface{}
+	IsDone() bool
 }
 
+// IterPrint helper
+func IterPrint(i Iterator) {
+	for i.First(); !i.IsDone(); {
+		c := i.Next()
+		fmt.Printf("%#v\n", c)
+	}
+}
+
+// Numbers struct impl Aggregate
 type Numbers struct {
 	start, end int
 }
@@ -24,12 +33,14 @@ func NewNumbers(start, end int) *Numbers {
 }
 
 func (n *Numbers) Iterator() Iterator {
+	// wraps
 	return &NumbersIterator{
 		numbers: n,
 		next:    n.start,
 	}
 }
 
+// NumbersIterator struct
 type NumbersIterator struct {
 	numbers *Numbers
 	next    int
@@ -50,11 +61,4 @@ func (i *NumbersIterator) Next() interface{} {
 		return next
 	}
 	return nil
-}
-
-func IteratorPrint(i Iterator) {
-	for i.First(); !i.IsDone(); {
-		c := i.Next()
-		fmt.Printf("%#v\n", c)
-	}
 }

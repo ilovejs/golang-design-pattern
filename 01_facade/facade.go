@@ -9,12 +9,10 @@ func NewAPI() API {
 	}
 }
 
-//API is facade interface of facade package
 type API interface {
 	Test() string
 }
 
-//facade implement
 type apiImpl struct {
 	a AModuleAPI
 	b BModuleAPI
@@ -26,12 +24,11 @@ func (a *apiImpl) Test() string {
 	return fmt.Sprintf("%s\n%s", aRet, bRet)
 }
 
-//NewAModuleAPI return new AModuleAPI
+// AModuleAPI simple facotory
 func NewAModuleAPI() AModuleAPI {
 	return &aModuleImpl{}
 }
 
-//AModuleAPI ...
 type AModuleAPI interface {
 	TestA() string
 }
@@ -42,12 +39,11 @@ func (*aModuleImpl) TestA() string {
 	return "A module running"
 }
 
-//NewBModuleAPI return new BModuleAPI
+// BModuleAPI simple facotory return new BModuleAPI
 func NewBModuleAPI() BModuleAPI {
 	return &bModuleImpl{}
 }
 
-//BModuleAPI ...
 type BModuleAPI interface {
 	TestB() string
 }

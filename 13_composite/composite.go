@@ -5,9 +5,12 @@ import "fmt"
 type Component interface {
 	Parent() Component
 	SetParent(Component)
+
 	Name() string
 	SetName(string)
+
 	AddChild(Component)
+
 	Print(string)
 }
 
@@ -18,6 +21,7 @@ const (
 
 func NewComponent(kind int, name string) Component {
 	var c Component
+
 	switch kind {
 	case LeafNode:
 		c = NewLeaf()
@@ -25,10 +29,12 @@ func NewComponent(kind int, name string) Component {
 		c = NewComposite()
 	}
 
+	// set component name
 	c.SetName(name)
 	return c
 }
 
+// component internal
 type component struct {
 	parent Component
 	name   string
@@ -50,10 +56,12 @@ func (c *component) SetName(name string) {
 	c.name = name
 }
 
+// AddChild is not implemented
 func (c *component) AddChild(Component) {}
 
 func (c *component) Print(string) {}
 
+// Leaf
 type Leaf struct {
 	component
 }
@@ -66,6 +74,7 @@ func (c *Leaf) Print(pre string) {
 	fmt.Printf("%s-%s\n", pre, c.Name())
 }
 
+// Composite has children
 type Composite struct {
 	component
 	childs []Component
