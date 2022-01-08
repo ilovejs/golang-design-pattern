@@ -1,7 +1,5 @@
 package iterator
 
-import "fmt"
-
 func ExampleIterator() {
 	var aggregate Aggregate
 	aggregate = NewNumbers(1, 10)
@@ -20,5 +18,5 @@ func ExampleIterator() {
 	// 9
 	// 10
 
-	fmt.Print("0")
+	//fmt.Print("0")
 }

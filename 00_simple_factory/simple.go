@@ -2,7 +2,7 @@ package simplefactory
 
 import "fmt"
 
-// API interface
+// API is factory interface. Used as constructed obj
 type API interface {
 	Say(name string) string
 }
@@ -10,7 +10,7 @@ type API interface {
 // NewAPI return Api instance by type
 func NewAPI(t int) API {
 	if t == 1 {
-		return &hiAPI{}
+		return &hiAPI{} // todo: funny it returns address ?
 	} else if t == 2 {
 		return &helloAPI{}
 	}
@@ -18,14 +18,16 @@ func NewAPI(t int) API {
 }
 
 // hiAPI is one of API implement
-type hiAPI struct{}
+type hiAPI struct {
+}
 
 func (*hiAPI) Say(name string) string {
 	return fmt.Sprintf("Hi, %s", name)
 }
 
 // HelloAPI is another API implement
-type helloAPI struct{}
+type helloAPI struct {
+}
 
 func (*helloAPI) Say(name string) string {
 	return fmt.Sprintf("Hello, %s", name)

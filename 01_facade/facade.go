@@ -2,6 +2,12 @@ package facade
 
 import "fmt"
 
+// API is shared methods among sub-system
+type API interface {
+	Test() string
+}
+
+// NewAPI factory method
 func NewAPI() API {
 	return &apiImpl{
 		a: NewAModuleAPI(),
@@ -9,37 +15,43 @@ func NewAPI() API {
 	}
 }
 
-type API interface {
-	Test() string
-}
+// ---------------------------------
 
+// apiImpl is impl of API interface
 type apiImpl struct {
 	a AModuleAPI
 	b BModuleAPI
 }
 
+// Test belongs to the root
 func (a *apiImpl) Test() string {
-	aRet := a.a.TestA()
+	// calls test in sub-system
+	aRet := a.a.TestAXX()
 	bRet := a.b.TestB()
+
 	return fmt.Sprintf("%s\n%s", aRet, bRet)
 }
 
-// AModuleAPI simple facotory
+// ---------------------------------
+
+// NewAModuleAPI simple factory
 func NewAModuleAPI() AModuleAPI {
 	return &aModuleImpl{}
 }
 
 type AModuleAPI interface {
-	TestA() string
+	TestAXX() string
 }
 
 type aModuleImpl struct{}
 
-func (*aModuleImpl) TestA() string {
+func (*aModuleImpl) TestAXX() string {
 	return "A module running"
 }
 
-// BModuleAPI simple facotory return new BModuleAPI
+// ---------------------------------
+
+// NewBModuleAPI simple factory return new BModuleAPI
 func NewBModuleAPI() BModuleAPI {
 	return &bModuleImpl{}
 }
