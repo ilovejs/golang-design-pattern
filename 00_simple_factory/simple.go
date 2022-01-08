@@ -12,7 +12,7 @@ func NewAPI(t int) API {
 	if t == 1 {
 		return &hiAPI{} // todo: funny it returns address ?
 	} else if t == 2 {
-		return &helloAPI{}
+		return &helloAPI{} // todo: notice that address been used as interface type!!
 	}
 	return nil
 }

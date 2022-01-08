@@ -5,7 +5,8 @@ import (
 	"testing"
 )
 
-const parCount = 100
+// parallel counter
+const _pCnt = 100
 
 func TestSingleton(t *testing.T) {
 	ins1 := GetInstance()
@@ -18,9 +19,11 @@ func TestSingleton(t *testing.T) {
 func TestParallelSingleton(t *testing.T) {
 	start := make(chan struct{})
 	wg := sync.WaitGroup{}
-	wg.Add(parCount)
-	instances := [parCount]Singleton{}
-	for i := 0; i < parCount; i++ {
+	wg.Add(_pCnt)
+
+	instances := [_pCnt]Singleton{}
+
+	for i := 0; i < _pCnt; i++ {
 		go func(index int) {
 			//协程阻塞，等待channel被关闭才能继续运行
 			<-start
@@ -28,10 +31,12 @@ func TestParallelSingleton(t *testing.T) {
 			wg.Done()
 		}(i)
 	}
+
 	//关闭channel，所有协程同时开始运行，实现并行(parallel)
 	close(start)
 	wg.Wait()
-	for i := 1; i < parCount; i++ {
+
+	for i := 1; i < _pCnt; i++ {
 		if instances[i] != instances[i-1] {
 			t.Fatal("instance is not equal")
 		}

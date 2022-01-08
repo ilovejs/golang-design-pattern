@@ -8,6 +8,8 @@ type Singleton interface {
 	foo()
 }
 
+// ----
+
 // singleton 是单例模式类，包私有的
 type singleton struct{}
 
@@ -18,11 +20,11 @@ var (
 	once     sync.Once
 )
 
-//GetInstance 用于获取单例模式对象
+// GetInstance 用于获取单例模式对象
 func GetInstance() Singleton {
 	once.Do(func() {
+		// only set once in global scope
 		instance = &singleton{}
 	})
-
 	return instance
 }
