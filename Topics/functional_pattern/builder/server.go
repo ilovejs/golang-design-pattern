@@ -25,9 +25,9 @@ type Server struct {
 	TLS     *tls.Config
 }
 
-//ServerBuilder 使用一个builder类来做包装
+// ServerBuilder 使用一个builder类来做包装
 type ServerBuilder struct {
-	Server
+	Server // wrapper
 }
 
 func (sb *ServerBuilder) Create(addr string, port int) *ServerBuilder {
@@ -61,10 +61,14 @@ func (sb *ServerBuilder) Build() Server {
 	return sb.Server
 }
 
-// Run 这种方式也很清楚，不需要额外的 Config 类，使用链式的函数调用的方式来构造一个对象，
-//只需要多加一个 Builder 类。你可能会觉得，这个 Builder 类似乎有点多余，
-// * 我们似乎可以直接在Server 上进行这样的 Builder 构造，的确是这样的。
-//   但是，在处理错误的时候可能就有点麻烦，不如一个包装类更好一些
+// 这种方式也很清楚，不需要额外的 Config 类，
+// 使用链式的函数调用的方式来构造一个对象，只需要多加一个 Builder 类。
+// 你可能会觉得，这个 Builder类`似乎`有点`多余`
+
+// 我们似乎可以直接在Server 上进行这样的 Builder 构造，的确是这样的。
+// 但是，在处理错误的时候可能就有点麻烦，不如一个包装类更好一些 (separate it out?)
+// that's to embed ServerBuilder insider Server
+
 func Run() {
 
 	sb := ServerBuilder{}

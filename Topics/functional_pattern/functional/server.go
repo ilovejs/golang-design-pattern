@@ -15,7 +15,8 @@ type Server struct {
 	TLS      *tls.Config
 }
 
-// Option is functional callback
+// Core idea -- define an Option function use struct as input
+
 type Option func(*Server)
 
 func Protocol(p string) Option {
