@@ -36,3 +36,9 @@ Go 语言设计模式的实例代码
 * [解释器模式（Interpreter）](https://github.com/senghoo/golang-design-pattern/tree/master/19_interpreter)
 * [职责链模式（Chain of Responsibility）](https://github.com/senghoo/golang-design-pattern/tree/master/21_chain_of_responsibility)
 * [访问者模式（Visitor）](https://github.com/senghoo/golang-design-pattern/tree/master/23_visitor)
+
+## more
+
+https://github.com/pkg/errors
+https://jxck.hatenablog.com/entry/golang-error-handling-lesson-by-rob-pike
+https://go.dev/blog/errors-are-values

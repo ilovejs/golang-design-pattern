@@ -13,6 +13,8 @@ type Server struct {
 	Timeout  time.Duration
 	MaxConns int
 	TLS      *tls.Config
+	// we can embed a Error interface
+	// to collect all errors e.g. scanner.Err()
 }
 
 // Core idea -- define an Option function use struct as input
