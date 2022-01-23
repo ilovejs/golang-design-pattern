@@ -1,4 +1,12 @@
-# Go 语言设计模式
+# Go Design Pattern 
+
+Originally has several chapter. I read and rewrite, learn for each of this 42 patterns.
+
+Then, it extends to more broadly, after I participate in the course [Go 语言编程模式实战](https://time.geekbang.org/column/article/330232?utm_source=u_nav_web&utm_medium=u_nav_web&utm_term=u_nav_web)
+
+I derive my thoughts on this material under `Topics` folder, 
+
+Feel free to reproduce and practice.
 
 [![Build Status](https://travis-ci.org/senghoo/golang-design-pattern.svg?branch=master)](https://travis-ci.org/senghoo/golang-design-pattern)
 
@@ -37,8 +45,10 @@ Go 语言设计模式的实例代码
 * [职责链模式（Chain of Responsibility）](https://github.com/senghoo/golang-design-pattern/tree/master/21_chain_of_responsibility)
 * [访问者模式（Visitor）](https://github.com/senghoo/golang-design-pattern/tree/master/23_visitor)
 
-## more
+## More readings
 
+```
 https://github.com/pkg/errors
 https://jxck.hatenablog.com/entry/golang-error-handling-lesson-by-rob-pike
 https://go.dev/blog/errors-are-values
+```
