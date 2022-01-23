@@ -7,7 +7,7 @@ import (
 )
 
 // 动用 Go 语言的 Go Routine 和 Channel 还有一个好处，
-// 就是可以写出 1 对多，或多对 1 的 Pipeline，也就是 Fan In/ Fan Out。
+// 就是可以写出 1 对多，或多对 1 的 pipeline，也就是 Fan In/ Fan Out。
 // 下面，我们来看一个 Fan in 的示例
 
 func makeRange(min, max int) []int {

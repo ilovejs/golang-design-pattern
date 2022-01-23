@@ -1,6 +1,6 @@
-package DI
+package dependency_injection
 
-// -- refactoring IoC.go
+// -- refactoring ioc.go
 
 import "errors"
 
@@ -30,7 +30,7 @@ func (undo *Undo) Undo() error {
 }
 
 /*
-TODO: compare with IoC.go
+TODO: compare with ioc.go
 这个就是控制反转，不是由控制逻辑 Undo 来依赖业务逻辑 IntSet，[1]
 而是由业务逻辑 IntSet 依赖 Undo [2]
 

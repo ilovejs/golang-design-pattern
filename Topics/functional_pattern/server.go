@@ -1,4 +1,4 @@
-package FunctionalOptionPattern
+package functional_pattern
 
 import (
 	"crypto/tls"
