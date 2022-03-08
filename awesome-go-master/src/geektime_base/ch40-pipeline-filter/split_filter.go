@@ -16,10 +16,13 @@ func NewSplitFilter(delimiter string) *SplitFilter {
 }
 
 func (sf *SplitFilter) Process(data Request) (Response, error) {
-	if str, ok := data.(string); !ok {
+	// to type that can be processed by this filter
+	str, ok := data.(string)
+	if !ok {
+		// give up
 		return nil, SplitFilterWrongFormatError
-	} else {
-		parts := strings.Split(str, sf.delimiter)
-		return parts, nil
 	}
+
+	parts := strings.Split(str, sf.delimiter)
+	return parts, nil
 }
