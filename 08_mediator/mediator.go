@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// CDDriver is on the highest level
 type CDDriver struct {
 	Data string
 }
@@ -13,9 +14,11 @@ func (c *CDDriver) ReadData() {
 	c.Data = "music,image"
 
 	fmt.Printf("CDDriver: reading data %s\n", c.Data)
+	// mediator
 	GetMediatorInstance().changed(c)
 }
 
+// CPU type
 type CPU struct {
 	Video string
 	Sound string
@@ -27,9 +30,11 @@ func (c *CPU) Process(data string) {
 	c.Video = sp[1]
 
 	fmt.Printf("CPU: split data with Sound %s, Video %s\n", c.Sound, c.Video)
+	// like CD driver
 	GetMediatorInstance().changed(c)
 }
 
+// VideoCard type
 type VideoCard struct {
 	Data string
 }
@@ -37,9 +42,11 @@ type VideoCard struct {
 func (v *VideoCard) Display(data string) {
 	v.Data = data
 	fmt.Printf("VideoCard: display %s\n", v.Data)
+	// same
 	GetMediatorInstance().changed(v)
 }
 
+// SoundCard type
 type SoundCard struct {
 	Data string
 }
@@ -47,9 +54,11 @@ type SoundCard struct {
 func (s *SoundCard) Play(data string) {
 	s.Data = data
 	fmt.Printf("SoundCard: play %s\n", s.Data)
+	// same
 	GetMediatorInstance().changed(s)
 }
 
+// Mediator type
 type Mediator struct {
 	CD    *CDDriver
 	CPU   *CPU
@@ -57,6 +66,7 @@ type Mediator struct {
 	Sound *SoundCard
 }
 
+// global manager ?
 var mediator *Mediator
 
 func GetMediatorInstance() *Mediator {
@@ -66,7 +76,9 @@ func GetMediatorInstance() *Mediator {
 	return mediator
 }
 
+// changed take interface
 func (m *Mediator) changed(i interface{}) {
+	// dynamic dispatch
 	switch inst := i.(type) {
 	case *CDDriver:
 		m.CPU.Process(inst.Data)

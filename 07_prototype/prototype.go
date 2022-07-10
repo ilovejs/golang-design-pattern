@@ -5,6 +5,7 @@ type Cloneable interface {
 	Clone() Cloneable
 }
 
+// PrototypeManager store mapping
 type PrototypeManager struct {
 	prototypes map[string]Cloneable
 }
@@ -16,7 +17,8 @@ func NewPrototypeManager() *PrototypeManager {
 }
 
 func (p *PrototypeManager) Get(name string) Cloneable {
-	return p.prototypes[name].Clone()
+	clonable := p.prototypes[name]
+	return clonable.Clone()
 }
 
 func (p *PrototypeManager) Set(name string, prototype Cloneable) {
