@@ -14,6 +14,7 @@ func (c *CDDriver) ReadData() {
 	c.Data = "music,image"
 
 	fmt.Printf("CDDriver: reading data %s\n", c.Data)
+
 	// mediator
 	GetMediatorInstance().changed(c)
 }

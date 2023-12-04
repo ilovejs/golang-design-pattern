@@ -6,6 +6,7 @@ type Command interface {
 	Execute()
 }
 
+// StartCommand contains mother board
 type StartCommand struct {
 	mb *MotherBoard
 }
@@ -20,6 +21,7 @@ func (c *StartCommand) Execute() {
 	c.mb.Start()
 }
 
+// RebootCommand
 type RebootCommand struct {
 	mb *MotherBoard
 }
@@ -34,6 +36,7 @@ func (c *RebootCommand) Execute() {
 	c.mb.Reboot()
 }
 
+// MotherBoard
 type MotherBoard struct{}
 
 func (*MotherBoard) Start() {
@@ -44,6 +47,7 @@ func (*MotherBoard) Reboot() {
 	fmt.Print("system rebooting\n")
 }
 
+// Box is the invoker
 type Box struct {
 	button1 Command
 	button2 Command
